@@ -4,14 +4,17 @@ from .models import Director, Movie, Review
 class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
-        fields = 'all'
+        fields = ['id', 'name']
 
 class MovieSerializer(serializers.ModelSerializer):
+    director = DirectorSerializer()
+    reviews = ReviewSerializer(many=True)
+
     class Meta:
         model = Movie
-        fields = 'all'
+        fields = ['id', 'title', 'director', 'reviews']
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'all'
+        fields = ['id', 'stars']
