@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .models import Movie, Review, Director
-from .serializers import MovieSerializer, ReviewSerializer, DirectorSerializer
+from .models import Director, Movie, Review
+from .serializers import DirectorSerializer, MovieSerializer, ReviewSerializer
 
 class DirectorList(generics.ListCreateAPIView):
     queryset = Director.objects.all()
