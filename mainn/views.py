@@ -1,11 +1,25 @@
 from rest_framework import generics
 from .models import Director, Movie, Review
-from .serializers import DirectorSerializer, MovieSerializer, ReviewSerializer
+from mainn.serializer import DirectorSerializer, MovieSerializer, ReviewSerializer
 from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics
+
+class DirectorCreateView(generics.CreateAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
+
+class DirectorDeleteView(generics.DestroyAPIView):
+    queryset = Director.objects.all()
+    lookup_field = 'id'
+
+class DirectorUpdateView(generics.UpdateAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
+    lookup_field = 'id'
 
 class UserRegistration(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
